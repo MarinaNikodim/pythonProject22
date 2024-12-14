@@ -1,4 +1,5 @@
 import pandas as pd
+from PIL import Image
 
 
 try:
@@ -16,6 +17,9 @@ try:
 except FileNotFoundError:
     print('Файл не найден')
 
+
+# image = Image.open('NY_ball.png', 'r')
+# image.show()
 
 
 
