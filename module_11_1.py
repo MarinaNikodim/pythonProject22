@@ -10,8 +10,9 @@ try:
     # определить какие заголовки и столбцы считывать
     datafile = pd.read_excel(file_path, sheet_name='Лист 1', header=12, usecols=selected_columns)
     print(datafile.head()) # проверка, вывод пяти первых строк
+    datafile['Итого выручка, руб.'] = datafile['Реализовано на сумму, руб.'] + datafile['Доплата за счет Ozon, руб.']
     # суммирование выручки и доплаты от озон, создание сводного файла
-    pivot_table = pd.pivot_table(datafile, values=['Кол-во', 'Реализовано на сумму, руб.', 'Доплата за счет Ozon, руб.'],
+    pivot_table = pd.pivot_table(datafile, values=['Кол-во', 'Итого выручка, руб.'],
                                  index=['Товар'], aggfunc='sum')
     print(pivot_table)
     pivot_table.to_excel('Pivot_report.xlsx') # выгрузка сводного файла
